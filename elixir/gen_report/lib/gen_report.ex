@@ -1,14 +1,52 @@
 defmodule GenReport do
   alias GenReport.Parser
 
-  def build() do
-    {:error, "No file name was provided"}
+  def build(filename) when filename == nil or filename == "" do
+    {:error, "No filename was provided"}
   end
 
   def build(filename) do
-    filename
-    |> Parser.parse_file()
-    |> Enum.reduce(report_acc(), fn row_data, acc -> aggregate_values(acc, row_data) end)
+    result =
+      filename
+      |> Parser.parse_file()
+      |> Enum.reduce(report_acc(), fn row_data, acc -> aggregate_values(acc, row_data) end)
+
+    {:ok, result}
+  end
+
+  def build_from_many(filenames) when not is_list(filenames) do
+    {:error, "The argument provided was not a list"}
+  end
+
+  def build_from_many(filenames) when filenames == [] do
+    {:error, "No filenames was provided"}
+  end
+
+  def build_from_many(filenames) do
+    result =
+      filenames
+      |> Task.async_stream(&build/1)
+      |> Enum.reduce(report_acc(), fn {:ok, {:ok, report}}, acc -> merge_reports(acc, report) end)
+
+    {:ok, result}
+  end
+
+  def merge_reports(report_1, report_2) do
+    all_hours = merge_values(report_1["all_hours"], report_2["all_hours"])
+
+    hours_per_month = marge_values_inner(report_1["hours_per_month"], report_2["hours_per_month"])
+
+    hours_per_year = marge_values_inner(report_1["hours_per_year"], report_2["hours_per_year"])
+
+    build_report(all_hours, hours_per_month, hours_per_year)
+  end
+
+  defp merge_values(map1, map2) do
+    Map.merge(map1, map2, fn _k, v1, v2 -> v1 + v2 end)
+  end
+
+  defp marge_values_inner(map1, map2) do
+    Map.merge(map1, map2, fn _k, v1, v2 -> merge_values(v1, v2) end)
   end
 
   defp aggregate_values(acc, [name, hours, _day, month, year]) do
