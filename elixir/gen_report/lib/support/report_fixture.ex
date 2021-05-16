@@ -1,0 +1,172 @@
+defmodule GenReport.Support.ReportFixture do
+  def build do
+    %{
+      "all_hours" => %{
+        "Cleiton" => 13797,
+        "Daniele" => 13264,
+        "Danilo" => 13583,
+        "Diego" => 13015,
+        "Giuliano" => 13671,
+        "Jakeliny" => 13909,
+        "Joseph" => 13174,
+        "Mayk" => 13526,
+        "Rafael" => 13597,
+        "Vinicius" => 13412
+      },
+      "hours_per_month" => %{
+        "Cleiton" => %{
+          "april" => 1161,
+          "august" => 1149,
+          "december" => 1100,
+          "february" => 1168,
+          "january" => 1271,
+          "july" => 1236,
+          "june" => 1123,
+          "march" => 1091,
+          "may" => 998,
+          "november" => 1266,
+          "october" => 1073,
+          "september" => 1161
+        },
+        "Daniele" => %{
+          "april" => 1138,
+          "august" => 1018,
+          "december" => 1019,
+          "february" => 1003,
+          "january" => 1130,
+          "july" => 1135,
+          "june" => 1092,
+          "march" => 1177,
+          "may" => 1170,
+          "november" => 1131,
+          "october" => 1046,
+          "september" => 1205
+        },
+        "Danilo" => %{
+          "april" => 1232,
+          "august" => 1200,
+          "december" => 1149,
+          "february" => 1156,
+          "january" => 1121,
+          "july" => 1114,
+          "june" => 966,
+          "march" => 1096,
+          "may" => 1075,
+          "november" => 1122,
+          "october" => 1237,
+          "september" => 1115
+        },
+        "Diego" => %{
+          "april" => 1112,
+          "august" => 1129,
+          "december" => 1177,
+          "february" => 1144,
+          "january" => 1118,
+          "july" => 1099,
+          "june" => 1073,
+          "march" => 1029,
+          "may" => 1082,
+          "november" => 995,
+          "october" => 928,
+          "september" => 1129
+        },
+        "Giuliano" => %{
+          "april" => 1152,
+          "august" => 1126,
+          "december" => 1100,
+          "february" => 1173,
+          "january" => 1107,
+          "july" => 1169,
+          "june" => 1197,
+          "march" => 1097,
+          "may" => 1182,
+          "november" => 1105,
+          "october" => 1123,
+          "september" => 1140
+        },
+        "Jakeliny" => %{
+          "april" => 1172,
+          "august" => 1098,
+          "december" => 1122,
+          "february" => 1119,
+          "january" => 1118,
+          "july" => 1245,
+          "june" => 1182,
+          "march" => 1178,
+          "may" => 1129,
+          "november" => 1085,
+          "october" => 1197,
+          "september" => 1264
+        },
+        "Joseph" => %{
+          "april" => 1047,
+          "august" => 1167,
+          "december" => 1122,
+          "february" => 1202,
+          "january" => 1084,
+          "july" => 1153,
+          "june" => 1105,
+          "march" => 1038,
+          "may" => 1082,
+          "november" => 1005,
+          "october" => 1058,
+          "september" => 1111
+        },
+        "Mayk" => %{
+          "april" => 1016,
+          "august" => 1079,
+          "december" => 1159,
+          "february" => 1085,
+          "january" => 1100,
+          "july" => 1093,
+          "june" => 1190,
+          "march" => 1166,
+          "may" => 1173,
+          "november" => 1257,
+          "october" => 1094,
+          "september" => 1114
+        },
+        "Rafael" => %{
+          "april" => 1171,
+          "august" => 1199,
+          "december" => 965,
+          "february" => 1042,
+          "january" => 1125,
+          "july" => 1097,
+          "june" => 1218,
+          "march" => 1220,
+          "may" => 1141,
+          "november" => 1163,
+          "october" => 1161,
+          "september" => 1095
+        },
+        "Vinicius" => %{
+          "april" => 1149,
+          "august" => 1055,
+          "december" => 1186,
+          "february" => 1102,
+          "january" => 1036,
+          "july" => 979,
+          "june" => 1213,
+          "march" => 1191,
+          "may" => 1109,
+          "november" => 1169,
+          "october" => 1113,
+          "september" => 1110
+        }
+      },
+      "hours_per_year" => %{
+        "Cleiton" => %{2016 => 2699, 2017 => 2684, 2018 => 2805, 2019 => 2714, 2020 => 2895},
+        "Daniele" => %{2016 => 2573, 2017 => 2862, 2018 => 2633, 2019 => 2562, 2020 => 2634},
+        "Danilo" => %{2016 => 2746, 2017 => 2534, 2018 => 2972, 2019 => 2666, 2020 => 2665},
+        "Diego" => %{2016 => 2577, 2017 => 2647, 2018 => 2792, 2019 => 2486, 2020 => 2513},
+        "Giuliano" => %{2016 => 2784, 2017 => 2696, 2018 => 2693, 2019 => 2850, 2020 => 2648},
+        "Jakeliny" => %{2016 => 2869, 2017 => 2625, 2018 => 2765, 2019 => 2709, 2020 => 2941},
+        "Joseph" => %{2016 => 2603, 2017 => 2617, 2018 => 2587, 2019 => 2672, 2020 => 2695},
+        "Mayk" => %{2016 => 2644, 2017 => 2735, 2018 => 2770, 2019 => 2778, 2020 => 2599},
+        "Rafael" => %{2016 => 2684, 2017 => 2570, 2018 => 2628, 2019 => 2786, 2020 => 2929},
+        "Vinicius" => %{2016 => 2530, 2017 => 2720, 2018 => 2654, 2019 => 2640, 2020 => 2868}
+      }
+    }
+  end
+end
