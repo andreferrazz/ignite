@@ -17,6 +17,8 @@ defmodule Exlivery.Orders.Order do
      }}
   end
 
+  def build(_, _), do: {:error, "Invalid parameters"}
+
   defp calculate_total_price(items) do
     Enum.reduce(items, Decimal.new("0"), &sum_price/2)
   end
