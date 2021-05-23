@@ -1,21 +1,15 @@
 defmodule Exlivery.Users.UserTest do
   use ExUnit.Case
 
+  import Exlivery.Factory
+
   alias Exlivery.Users.User
 
   describe "build/5" do
     test "when valid parameters are given, return a valid user" do
-      result = User.build("Rua dos bobos, nº 0", 19, "12345678900", "bobo@fake.co", "bobo")
+      result = User.build("Rua dos Bobos, nº 0", 21, "12345678900", "joao@fake.co", "Joao")
 
-      expected =
-        {:ok,
-         %Exlivery.Users.User{
-           address: "Rua dos bobos, nº 0",
-           age: 19,
-           cpf: "12345678900",
-           email: "bobo@fake.co",
-           name: "bobo"
-         }}
+      expected = {:ok, build(:user)}
 
       assert result == expected
     end
