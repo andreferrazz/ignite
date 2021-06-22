@@ -12,7 +12,7 @@ defmodule Flightex.Users.UserAgent do
 
     case get(id) do
       {:error, _reason} -> {:error, "could not save the user"}
-      {:ok, _user} -> {:ok, "created"}
+      {:ok, user} -> {:ok, user.id}
     end
   end
 
