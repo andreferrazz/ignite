@@ -18,10 +18,10 @@ defmodule Flightex.Users.CreateOrUpdate do
   end
 
   defp save_user({:error, _reason}, %{name: name, email: email, cpf: cpf}) do
-    name
-    |> User.build(email, cpf)
-    |> elem(1)
-    |> UserAgent.save()
+    case User.build(name, email, cpf) do
+      {:ok, user} -> UserAgent.save(user)
+      error -> error
+    end
   end
 
   defp save_user({:ok, %User{} = user}, %{name: name, email: email, cpf: cpf}) do
