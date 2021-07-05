@@ -12,9 +12,7 @@ defmodule Flightex.Users.UserAgentTest do
 
       result = UserAgent.save(user)
 
-      expected = {:ok, "created"}
-
-      assert result == expected
+      assert {:ok, _id} = result
     end
   end
 
