@@ -2,23 +2,15 @@ defmodule Flightex.Bookings.CreateOrUpdate do
   alias Flightex.Bookings.Booking
   alias Flightex.Bookings.BookingAgent
 
-  def call(
-        id,
-        %{
-          complete_date: _complete_date,
-          city_origin: _city_origin,
-          city_destiny: _city_destiny,
-          user_id: _user_id
-        } = params
-      ) do
+  def call(%{id: id} = params) do
     case UUID.info(id) do
-      {:ok, _info} -> create_or_update_booking(id, params)
+      {:ok, _info} -> create_or_update_booking(params)
       {:error, _message} -> create_booking(params)
     end
   end
 
-  defp create_or_update_booking(id, params) do
-    case BookingAgent.get(id) do
+  defp create_or_update_booking(params) do
+    case BookingAgent.get(params.id) do
       {:ok, booking} -> update_booking(booking, params)
       {:error, _message} -> create_booking(params)
     end
@@ -26,7 +18,7 @@ defmodule Flightex.Bookings.CreateOrUpdate do
 
   defp update_booking(booking, params) do
     booking
-    |> Map.merge(params)
+    |> Map.merge(%{params | :id => booking.id})
     |> BookingAgent.save()
   end
 
