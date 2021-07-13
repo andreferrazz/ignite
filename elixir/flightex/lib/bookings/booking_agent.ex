@@ -19,6 +19,10 @@ defmodule Flightex.Bookings.BookingAgent do
     Agent.get(__MODULE__, fn state -> get_booking(state, id) end)
   end
 
+  def get_all do
+    Agent.get(__MODULE__, fn state -> state end)
+  end
+
   defp save_booking(%Booking{id: id} = booking) do
     Agent.update(__MODULE__, fn state -> Map.put(state, id, booking) end)
     {:ok, id}
