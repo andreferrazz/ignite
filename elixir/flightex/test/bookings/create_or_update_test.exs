@@ -16,7 +16,6 @@ defmodule Flightex.Bookings.CreateOrUpdateTest do
       UserAgent.save(user)
 
       {:ok, booking} = Booking.build(~N[2021-07-11 18:26:22], "Salvador", "New York", user.id)
-
       BookingAgent.save(booking)
 
       {:ok, saved_user: user, saved_booking: booking}
@@ -24,13 +23,14 @@ defmodule Flightex.Bookings.CreateOrUpdateTest do
 
     test "update an existing booking", %{saved_booking: saved_booking, saved_user: saved_user} do
       params = %{
+        id: saved_booking.id,
         complete_date: ~N[2021-07-01 18:26:22],
         city_origin: "Belo Horizonte",
         city_destiny: "Porto Alegre",
         user_id: saved_user.id
       }
 
-      CreateOrUpdateBooking.call(saved_booking.id, params)
+      CreateOrUpdateBooking.call(params)
 
       result = BookingAgent.get(saved_booking.id)
 
@@ -50,13 +50,14 @@ defmodule Flightex.Bookings.CreateOrUpdateTest do
 
     test "create a new booking", %{saved_user: saved_user} do
       params = %{
+        id: nil,
         complete_date: ~N[2021-07-01 18:26:22],
         city_origin: "Belo Horizonte",
         city_destiny: "Porto Alegre",
         user_id: saved_user.id
       }
 
-      result = CreateOrUpdateBooking.call(nil, params)
+      result = CreateOrUpdateBooking.call(params)
 
       assert {:ok, _id} = result
     end
