@@ -25,3 +25,6 @@ flightex-*.tar
 
 # Temporary files for e.g. tests
 /tmp
+
+# Generated files
+*.csv
