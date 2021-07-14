@@ -11,21 +11,28 @@ defmodule Flightex.Users.CreateOrUpdateTest do
     end
 
     test "when the parameters are valid, return a user" do
-      params = %{id: "invalid_uuid", name: "Test", email: "t@t.com", cpf: "00000000011"}
+      params_1 = %{id: "invalid_uuid", name: "Test", email: "t@t.com", cpf: "00000000011"}
+      params_2 = %{id: UUID.uuid4(), name: "Test", email: "t@t.com", cpf: "00000000011"}
 
-      result = CreateOrUpdate.call(params)
+      result_1 = CreateOrUpdate.call(params_1)
+      result_2 = CreateOrUpdate.call(params_2)
 
-      assert {:ok, _id} = result
+      assert {:ok, _id} = result_1
+      assert {:ok, _id} = result_2
     end
 
     test "when the cpf is invalid, return an error" do
-      params = %{id: "invalid_uuid", name: "Test", email: "t@t.com", cpf: 11_111_111_100}
+      params_1 = %{id: "invalid_uuid", name: "Test", email: "t@t.com", cpf: 11_111_111_100}
+      params_2 = %{id: UUID.uuid4(), name: "Test", email: "t@t.com", cpf: 11_111_111_100}
 
-      result = CreateOrUpdate.call(params)
+      result_1 = CreateOrUpdate.call(params_1)
+      result_2 = CreateOrUpdate.call(params_2)
 
-      expected = {:error, "Cpf can't be an integer."}
+      expected_1 = {:error, "Cpf can't be an integer."}
+      expected_2 = {:error, "Cpf can't be an integer."}
 
-      assert result == expected
+      assert result_1 == expected_1
+      assert result_2 == expected_2
     end
   end
 end
