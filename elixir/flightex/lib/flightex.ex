@@ -8,6 +8,7 @@ defmodule Flightex do
   def start_agents do
     UserAgent.start_link(%{})
     BookingAgent.start_link(%{})
+    :ok
   end
 
   defdelegate get_user(user_id), to: UserAgent, as: :get
@@ -15,5 +16,8 @@ defmodule Flightex do
 
   defdelegate get_booking(booking_id), to: BookingAgent, as: :get
   defdelegate save_booking(params), to: SaveBooking, as: :call
-  defdelegate generate_booking_report(filename \\ "report.csv"), to: BookingReport, as: :generate
+
+  defdelegate generate_booking_report(filename \\ "report.csv", from_date, to_date),
+    to: BookingReport,
+    as: :generate
 end
