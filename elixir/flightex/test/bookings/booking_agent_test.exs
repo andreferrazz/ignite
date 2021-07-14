@@ -24,6 +24,19 @@ defmodule Flightex.Bookings.BookingAgentTest do
 
       assert {:ok, _id} = result
     end
+
+    test "when the user is not found, return an error" do
+      user_id = UUID.uuid4()
+
+      {:ok, booking} =
+        Booking.build(~N[2021-07-20 18:00:00], "Belo Horizonte", "New York", user_id)
+
+      result = BookingAgent.save(booking)
+
+      expected = {:error, "Could not found user #{user_id}"}
+
+      assert result == expected
+    end
   end
 
   describe "get/1" do
