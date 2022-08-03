@@ -1,0 +1,10 @@
+version: "3"
+services:
+  main-database:
+    image: postgres
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
+      POSTGRES_DB: exmeal_dev
+    ports:
+      - 5432:5432
